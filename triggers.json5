@@ -1,0 +1,74 @@
+{
+    "commands": [
+        {
+            "name": ["cracked", "offline"],
+            "description": "No cracked Minecraft >:(",
+            "reply": {
+                "embeds": [{
+                    "title": "Cracked Minecraft",
+                    "description": "Playing under a cracked user is not supported nor in the launcher, you cannot do this without a modified version of the launcher which we do not endorse.\n\nIf you would like to play without an account, you can use demo mode to try the experience before considering a purchase.",
+                    "color": 0xED4245
+                }]
+            }
+        },
+        {
+            "name": "mods",
+            "description": "How to install mods.",
+            "reply": {
+                "embeds": [{
+                    "title": "How to install mods",
+                    "description": "Please for the love of god just use mod manager :sob:",
+                    "color": 0x12E65C
+                }]
+            }
+        },
+        {
+            "name": "eta",
+            "description": "When will this happen??????????",
+            "reply": {
+                "content": "Between now, and the year 3000.",
+                "embeds": [{
+                    "title": "We do not provide ETAs.",
+                    "description": "We don't know when something is gonna happen if we haven't said it, please just be patient :3",
+                    "color": 0x1088EB
+                }]
+            }
+        },
+        {
+            "test": true,
+            "name": "test",
+            "description": "The Test Command.",
+            "reply": {
+                "content": "Test test, 1 2, 1 2.",
+                "embeds": [{
+                    "title": "This is the Test Embed",
+                    "description": "Spooky, I know.",
+                    "color": 0xB515D1
+                }],
+            },
+            "replyButtons": [{
+                "id": "test_button",
+                "label": "Test Button",
+                "type": "primary"
+            }]
+        }
+    ],
+    "buttons": [
+        {
+            "id": "test_button",
+            "reply": {
+                "content": "You activated my trap card!",
+                "embeds": [{
+                    "title": "This is the Test Embed, embedded in a button!",
+                    "description": "Buttons, scary stuff, really. ;-;",
+                    "color": 0xB515D1
+                }]
+            },
+            "replyButtons": [{
+                "id": "test_button",
+                "label": "Test Button (Repeat)",
+                "type": "danger"
+            }]
+        }
+    ]
+}

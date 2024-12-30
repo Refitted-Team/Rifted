@@ -1,0 +1,15 @@
+{
+  "name": "rifted",
+  "version": "1.0.0",
+  "description": "The bot for the Derifted Discord server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Derifted Team",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "json5": "^2.2.3"
+  }
+}

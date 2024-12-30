@@ -1,0 +1,12 @@
+{
+    "embeds": {
+        "ticket": {
+            "title": "Tickets",
+            "description": "Here you can make a ticket for most kinds of issues.\n\nIf you are having issues with your account or logging in, you should press the `Login Issue` button, if you are having issues with using the launcher itself, click the `Launcher Issue` button, else, press the `Misc` button.\n\nYou can also file a bug report here by simply pressing the `Bug Report` button.",
+            "color": 0x114B86,
+            "footer": {
+                "text": "Last modified 27th November 2024"
+            }
+        }
+    }
+}

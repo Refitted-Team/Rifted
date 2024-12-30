@@ -1,0 +1,14 @@
+{
+    "token": "TOKEN_HERE",
+    "clientId": "CLIENT_ID_HERE",
+    "guildIds": ["GUILD_ID_HERE"],
+    "test": true,
+    "tickets": {
+        "guildId": "GUILD_ID_HERE",
+        "categoryId": "CATEGORY_ID_HERE"
+    },
+    "log": {
+        "channelId": "CHANNEL_ID_HERE",
+        "guildId": "GUILD_ID_HERE"
+    }
+}
