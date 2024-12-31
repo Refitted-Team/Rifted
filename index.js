@@ -1,3 +1,16 @@
+// Start our input handler thread
+
+const {Worker} = require('worker_threads');
+const worker = new Worker('./stdioHandler.js');
+worker.on('message', (result) => {
+    if (result === "STOP") {
+        process.exit(0);
+    }
+})
+worker.on("error", (msg) => {
+    console.log("Error occured in STDIO handler", msg);
+});
+
 const fs = require('node:fs');
 const path = require('node:path');
 
