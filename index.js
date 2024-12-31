@@ -1,15 +1,25 @@
-// Start our input handler thread
-
-const {Worker} = require('worker_threads');
-const worker = new Worker('./stdioHandler.js');
-worker.on('message', (result) => {
-    if (result === "STOP") {
-        process.exit(0);
-    }
-})
-worker.on("error", (msg) => {
-    console.log("Error occured in STDIO handler", msg);
+var readline = require('readline');
+var rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
 });
+
+async function inputHandler() {
+    while (true) {
+        await new Promise((resolve, reject) => {
+            rl.question('', function (answer) {
+                if (answer === "stop") {
+                    process.exit(0);
+                } else {
+                    resolve(answer);
+                    console.log("Unknown command.");
+                }
+            });
+        });
+    }
+}
+
+inputHandler();
 
 const fs = require('node:fs');
 const path = require('node:path');
@@ -117,7 +127,7 @@ client.on(Events.InteractionCreate, async interaction => {
 
             let channelName = generateTicketChannelName(data, interaction, guild, 1);
 
-            const channel = await guild.channels.create({name: channelName, type: ChannelType.GuildText});
+            const channel = await guild.channels.create({ name: channelName, type: ChannelType.GuildText });
             const category = guild.channels.cache.find(c => c.id === config.tickets.categoryId);
             channel.setParent(category);
             channel.permissionOverwrites.set(category.permissionOverwrites.cache);
@@ -159,21 +169,25 @@ client.on(Events.InteractionCreate, async interaction => {
 });
 
 client.on(Events.MessageUpdate, async (oldMessage, newMessage) => {
-    await newMessage.guild.channels.cache.get(config.log.channelId).send({ embeds: [{
-        title: `Message edited.`,
-        description: `Edited ${newMessage.author.toString()}.\n\n**Old Message**:\n${oldMessage.content}\n\n**New Message**:\n${newMessage.content}`,
-        color: 0xDEC41F
-    }]});
+    await newMessage.guild.channels.cache.get(config.log.channelId).send({
+        embeds: [{
+            title: `Message edited.`,
+            description: `Edited ${newMessage.author.toString()}.\n\n**Old Message**:\n${oldMessage.content}\n\n**New Message**:\n${newMessage.content}`,
+            color: 0xDEC41F
+        }]
+    });
 });
 
 client.on(Events.MessageDelete, async (message, channel) => {
     if (message.content.startsWith("??")) return;
 
-    await message.guild.channels.cache.get(config.log.channelId).send({ embeds: [{
-        title: `Message deleted.`,
-        description: `Message by ${message.author.toString()} from ${message.channel.toString()}.\n\n**Message content**:\n${message.content}`,
-        color: 0xED4245
-    }]});
+    await message.guild.channels.cache.get(config.log.channelId).send({
+        embeds: [{
+            title: `Message deleted.`,
+            description: `Message by ${message.author.toString()} from ${message.channel.toString()}.\n\n**Message content**:\n${message.content}`,
+            color: 0xED4245
+        }]
+    });
 });
 
 client.on(Events.MessageCreate, async message => {
@@ -191,7 +205,7 @@ client.on(Events.MessageCreate, async message => {
         let content = message.content.slice(2);
         let tags = content.split(",");
         let msgs = [];
-        
+
         if (tags.length <= 3) for (const tag of tags) {
             const commands = tagCommands.filter(item => item.name == tag);
             if (commands.length === 0) {
